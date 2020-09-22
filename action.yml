@@ -1,5 +1,5 @@
 # action.yml
-name: 'Get Branch Name and Tag'
+name: 'Get Branch Name and Check if is release branch'
 description: 'Get current branch name and corresponding branch tag if needed.'
 branding:
     icon: 'activity'  
@@ -7,8 +7,8 @@ branding:
 outputs:
   branch:
     description: 'Current branch name'
-  tag:
-    description: 'Corresponding branch tag'
+  is_release_branch:
+    description: 'The indicator whenever the branch is release branch'
 runs:
   using: 'docker'
   image: 'Dockerfile'
