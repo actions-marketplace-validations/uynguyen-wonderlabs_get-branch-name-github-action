@@ -1,15 +1,12 @@
 #!/bin/bash
 
-declare -A TAGS_MAP
-TAGS_MAP=( ["master"]="latest" ["development"]="development")
-
 BRANCH=$(echo ${GITHUB_REF} | sed -e "s/refs\/heads\///g")
-TAG=${TAGS_MAP[$BRANCH]}
+IS_RELEASE_BRANCH=0
 
-# if contains /refs/tags/
-if [ $(echo ${GITHUB_REF} | sed -e "s/refs\/tags\///g") != ${GITHUB_REF} ]; then
-  TAG="latest"
+# if contains release/
+if [ $(echo ${GITHUB_REF} | sed -e "s/release\///g") != ${GITHUB_REF} ]; then
+  IS_RELEASE_BRANCH=1
 fi;
 
 echo "::set-output name=branch::${BRANCH}"
-echo "::set-output name=tag::${TAG}"
+echo "::set-output name=isReleaseBranch::${IS_RELEASE_BRANCH}"
