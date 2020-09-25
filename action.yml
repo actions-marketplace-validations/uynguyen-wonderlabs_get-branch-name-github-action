@@ -1,9 +1,21 @@
 # action.yml
 name: 'Get Branch Name and Check if is release branch'
-description: 'Get current branch name and corresponding branch tag if needed.'
+description: 'Get current branch name and check if it is release branch.'
 branding:
     icon: 'activity'  
     color: 'white'
+    
+name: 'GitHub Push'
+description: 'Pushing to GitHub repository local changes'
+author: 'ad-m'
+branding:
+  icon: upload-cloud
+  color: green
+inputs:
+  branch:
+    description: 'Branch to check. Default or empty value represents current github ref (${GITHUB_REF})'
+    required: false
+    default: 'master'
 outputs:
   branch:
     description: 'Current branch name'
