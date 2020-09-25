@@ -1,10 +1,12 @@
 #!/bin/bash
 
-BRANCH=$(echo ${GITHUB_REF} | sed -e "s/refs\/heads\///g")
+INPUT_BRANCH=${INPUT_BRANCH:-GITHUB_REF}
+
+BRANCH=$(echo ${INPUT_BRANCH} | sed -e "s/refs\/heads\///g")
 IS_RELEASE_BRANCH='NO'
 
 # if contains release/
-if [ $(echo ${GITHUB_REF} | sed -e "s/release\///g") != ${GITHUB_REF} ]; then
+if [ $(echo ${INPUT_BRANCH} | sed -e "s/release\///g") != ${INPUT_BRANCH} ]; then
   IS_RELEASE_BRANCH='YES'
 fi;
 
